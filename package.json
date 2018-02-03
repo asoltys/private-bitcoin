@@ -18,6 +18,7 @@
   "homepage": "https://github.com/dcousens/private-bitcoin#readme",
   "dependencies": {
     "bitcoinjs-lib": "^3.3.2",
+    "dotenv": "^5.0.0",
     "easy-express-api": "^1.2.0",
     "indexd": "^0.8.13",
     "leveldown": "^2.1.1",

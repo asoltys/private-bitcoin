@@ -1,3 +1,4 @@
+require('dotenv').load()
 require('easy-express-api')({
   debug: require('debug')('api'),
   port: process.env.PORT,

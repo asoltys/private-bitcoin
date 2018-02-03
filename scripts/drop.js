@@ -1,3 +1,4 @@
+require('dotenv').load()
 let leveldown = require('leveldown')
 let Indexd = require('indexd')
 let rpc = require('../rpc')
