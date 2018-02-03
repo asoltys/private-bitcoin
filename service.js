@@ -5,9 +5,12 @@ let Indexd = require('indexd')
 let leveldown = require('leveldown')
 let rpc = require('./rpc')
 let zmq = require('zmq')
+let ds = require('deepstream.io-client-js')
 
 let db = leveldown(process.env.INDEXDB)
 let indexd = new Indexd(db, rpc)
+let client = ds('0.0.0.0:6020')
+client.login()
 
 module.exports = function initialize (callback) {
   function errorSink (err) {
@@ -23,6 +26,8 @@ module.exports = function initialize (callback) {
 
     let zmqSock = zmq.socket('sub')
     zmqSock.connect(process.env.ZMQ)
+    zmqSock.subscribe('rawblock')
+    zmqSock.subscribe('rawtx')
     zmqSock.subscribe('hashblock')
     zmqSock.subscribe('hashtx')
 
@@ -51,6 +56,10 @@ module.exports = function initialize (callback) {
           debugZmqTx(topic, message)
           return indexd.notify(message, errorSink)
         }
+
+        case 'rawtx': {
+          client.event.emit('tx', message)
+        } 
       }
     })
 

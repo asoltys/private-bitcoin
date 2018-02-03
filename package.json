@@ -18,6 +18,7 @@
   "homepage": "https://github.com/dcousens/private-bitcoin#readme",
   "dependencies": {
     "bitcoinjs-lib": "^3.3.2",
+    "deepstream.io-client-js": "https://github.com/deepstreamIO/deepstream.io-client-js#v4",
     "dotenv": "^5.0.0",
     "easy-express-api": "^1.2.0",
     "indexd": "^0.8.13",
